@@ -1,0 +1,78 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {./images/} }
+\usepackage[rightcaption]{sidecap}
+\usepackage{wrapfig}
+\usepackage{float}
+% \setlength{\parskip}{1em}
+\title{CIS 662: Take Home Assignment -1}
+\author{Akib Jawad Nafis, NetId: anafis}
+\begin{document}
+\maketitle
+
+\newcommand{\showImage} [3] {
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{#1}
+		\caption{#2}
+		\label{fig:#3}
+	\end{figure}
+}
+\section*{Question 1}
+\noindent \textbf{Question 1 (a)} Plot a graph of the date (x-axis) versus ftse, the UK based stock index. Hover your cursor on the graph and guess the month and year when the highest value occurred.\\
+
+\textbf{Answer}: Highest value occurred on May, 2018 and value is 7877.5
+
+\noindent \textbf{Question 1(b)}
+Create 4 sub-plots one on top of the other, one for each of the four stock indices (spx, dax, ftse, and nikkei) against dates in the x-axis. By just eyeballing which of the four had the greatest dip during COVID onset in 2020? \\
+
+\textbf{Answer:} By eyeballing greatest dip on 2020 is found in trace 3 (nikkei index) in terms of value.
+
+\noindent \textbf{Question 1(c)} Using the above 4 subplots, what are the other times there is a global fall in stock markets? Can you state what events these corresponded to? 
+
+\textbf{Answer:} There are other 2 cases when all four index dipped significantly, from 2000 to 2003 (This is dot com bubble burst)
+Another dip happened from 2008 to 2009 (This is the housing bubble burst of 2008 financial crisis)
+
+\noindent \textbf{Question 1(d)} Obtain a heat map of the correlations between all four indices (for the entire duration). Comment on the correlations highlighting what you expected to be correlated or uncorrelated based on the graphs. Were there any surprises? 
+
+\textbf{Answer:} All correlations are positive. Meaning if one of the stock index increases other indexes will also increase. This is not surprising. Given that all of those indexes reflect overall status of the stock market. I don't know what index represents what portion of the stock market, If it was clear, I could have also comment on relationship between different portion of the stock market.  Minimum correlation value is 0.4 (between ftse and nikkei index) spx and dax index is almost similar, correlation value between these two is 0.95.
+
+\noindent \textbf{Question 1(e)} Create 4 more subplots, now just using years 2005, 2006, 2007, 2008, 2009, and 2010 data. Do the four indices behave similarly? Write your thoughts about the trends.
+
+\textbf{Answer:} Trace 1 (dax) and Trace 2 (ftse) grows in a very similar manner. In terms of the rate of ups and downs trend of all index is similar. Meaning when one index goes up, other index also goes up in a similar manner. 
+
+\noindent \textbf{Question 1(f)} Now obtain a heat map only for years 2005-2010 (both included). Which two indices were most correlated earlier for the full data and which two are most correlated now? 
+
+\textbf{Answer:} Spx and nikkei is very much closely correlated. Correlation index is 0.88. Dax and nikkei is also very much closely correlated. Correlation index is 0.88. Which is different from what we have earlier in Question 1(d).
+On question 1(d) we've seen spx and dax is highly correlated. Here it is also highly correlated, (correlation value is 0.84).
+But not the highest correlation index between spx and dax
+
+\section*{Question 2}
+\noindent \textbf{Question 2(a)} Subset the data by only considering the years 2014, 2015, 2016, 2017, and 2018 for both the weather data as well as the stock index data. Which data set has NaN values? And in which columns are they? 
+
+\textbf{Answer:} In the filtered datasets, weather data has some NaN values in column global\_radiation and snow\_depth
+
+\noindent \textbf{Question 2(b)} Use df[’column’].interpolate(inplace = True) to interpolate the values of NaN as the data is already sorted by dates. State the number of rows (n) at this stage for each of the data sets and also check there are no NaNs. 
+
+\textbf{Answer:} Number of rows after filtering weather dataset is 1826. After filtering index dataset, number of rows is 1304. There is no NaN values after using interpolation to replace NaN values.
+
+\noindent \textbf{Question 2(c)} Use only the date and ‘ftse’ columns from the stock data, and merge those columns with the London weather data. Use the date field as the merge key. Use all the rows of the weather data. How many NaN rows are in the resulting set? 
+
+\textbf{Answer:} In total there are 1826 rows (all the rows of the weather) and there are 522 NAN values in the merged dataset.
+
+\noindent \textbf{Question 2(d)} The stock market does not have any data published on holidays. Fill those NaN using interpolate. Also drop the column ’Date’ as it is the same as ’date’. How many rows of NaN are in the merged dataset now? Also, how many columns are in the merged set now?
+
+\textbf{Answer:} After interpolation there are zero NaN values, and there are 11 columns in the merged dataset.
+
+\noindent \textbf{Question 2(e)} Obtain a heat map of the correlations between all the numerical columns but only for a subset of merged data when snow depth is greater than zero. So looks like the closing index value is dependent on the weather that day provided there was some snow depth! Which variables is ’ftse’ most and least (i.e. most negative) correlated? 
+
+\textbf{Answer:} From the correlation matrix we can see that
+\begin{enumerate}
+	\item Ftse index value is most negatively correated with snow depth, correlation index is -0.81. Meaning if snow\_depth increases, it is highly likely that ftse index will decrease.
+	\item Ftse index value is most positively correlated with precipitation, correlation index is (0.94). Meaning on rainy days ftse index increases. Given that, there is always rain in London, it is not abnormal.
+\end{enumerate}
+
+\end{document}
+
+
